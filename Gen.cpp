@@ -29,10 +29,28 @@ void url_gen(){
         ss>>tmp;
         start=tmp.length();
         for(int i=start+1;i<t.length();i++){
-            if(t[i]==' ' && i!=t.length()-1)url2+='-';
-            else url2+=t[i];
+            if(t[i]==' ' && i!=t.length()-1) url2+='-';
+            else if(t[i]==' ' && i==t.length()-1){
+                break;
+            }  
+            else{
+                if(t[i]!='(' && t[i]!=')' && t[i]!=':' && t[i]!='.'){
+                    url2+=t[i];
+                } 
+            } 
         }
         url.push_back(url2);
+    }
+    return ;
+}
+
+void to_lowercase(){
+    for(auto &t:url){
+        for(int i=0;i<t.length();i++){
+            if(t[i]>='A' && t[i]<='Z'){
+                t[i]+=32;
+            }
+        }
     }
     return ;
 }
@@ -56,11 +74,9 @@ int main() {
     }
 
     url_gen();
+    to_lowercase();
 
     for(auto &t:url){cout<<t<<endl;}
-
-    cout<<"Table Of Contents"<<"\n";
-    cout<<"================="<<"\n";
     
     return 0;
 }
