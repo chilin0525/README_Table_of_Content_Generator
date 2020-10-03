@@ -3,6 +3,8 @@ using namespace std;
 
 vector<string> head;
 vector<string> url;
+vector<string> title;
+vector<pair<string,int> > rec;
 
 void gen_head(string &str){
     head.push_back(str);
@@ -55,6 +57,40 @@ void to_lowercase(){
     return ;
 }
 
+void title_gen(){
+    for(int i=0;i<head.size();i++){
+        stringstream ss;
+        string tmp,tmpTitle;
+        ss<<head[i];
+        ss>>tmp;
+        if(tmp=="#"){
+            tmpTitle.assign(head[i],2,head[i].size()-2);
+            rec.push_back(make_pair(tmpTitle,1));
+        }
+        else if(tmp=="##"){
+            tmpTitle.assign(head[i],3,head[i].size()-3);
+            rec.push_back(make_pair(tmpTitle,2));
+        }
+        else if(tmp=="###"){
+            tmpTitle.assign(head[i],4,head[i].size()-4);
+            rec.push_back(make_pair(tmpTitle,3));
+        }
+        else if(tmp=="####"){
+            tmpTitle.assign(head[i],5,head[i].size()-5);
+            rec.push_back(make_pair(tmpTitle,4));
+        }
+        else if(tmp=="#####"){
+            tmpTitle.assign(head[i],6,head[i].size()-6);
+            rec.push_back(make_pair(tmpTitle,5));
+        }
+        else if(tmp=="######"){
+            tmpTitle.assign(head[i],7,head[i].size()-7);
+            rec.push_back(make_pair(tmpTitle,6));
+        }
+        title.push_back(tmpTitle);
+    }
+}
+
 int main() {
     cin.tie(0), ios::sync_with_stdio(0);
     
@@ -74,9 +110,32 @@ int main() {
     }
 
     url_gen();
+    title_gen();
     to_lowercase();
 
-    for(auto &t:url){cout<<t<<endl;}
+    cout<<"================Table of Content================"<<'\n'<<'\n';
+
+    for(int i=0;i<title.size();i++){
+        if(rec[i].second==1){
+            cout<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+        }
+        else if(rec[i].second==2){
+            cout<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+        }
+        else if(rec[i].second==3){
+            cout<<"\t"<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+        }
+        else if(rec[i].second==4){
+            cout<<"\t"<<"\t"<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+        }
+        else if(rec[i].second==5){
+            cout<<"\t"<<"\t"<<"\t"<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+        }
+        else{
+            cout<<"\t"<<"\t"<<"\t"<<"\t"<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+        }
+    }
+
     
     return 0;
 }
