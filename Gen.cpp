@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+# define TAB "    "
 using namespace std;
 
 vector<string> head;
@@ -117,24 +118,26 @@ int main() {
 
     for(int i=0;i<title.size();i++){
         if(rec[i].second==1){
-            cout<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+            cout<<"* ["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
         }
         else if(rec[i].second==2){
-            cout<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+            cout<<TAB<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
         }
         else if(rec[i].second==3){
-            cout<<"\t"<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+            cout<<TAB<<TAB<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
         }
         else if(rec[i].second==4){
-            cout<<"\t"<<"\t"<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+            cout<<TAB<<TAB<<TAB<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
         }
         else if(rec[i].second==5){
-            cout<<"\t"<<"\t"<<"\t"<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+            cout<<TAB<<TAB<<TAB<<TAB<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
         }
         else{
-            cout<<"\t"<<"\t"<<"\t"<<"\t"<<"\t"<<"\t"<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
+            cout<<TAB<<TAB<<TAB<<TAB<<TAB<<"* "<<"["<<rec[i].first<<"]("<<url[i]<<")"<<endl;
         }
     }
+    cout<<endl;
+    cout<<"[Created By README_Table_of_Content_Generator By Chilin😎️😎️😎️](https://github.com/chilin0525/README_Table_of_Content_Generator)"<<endl;
 
     
     return 0;
